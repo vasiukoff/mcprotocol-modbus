@@ -1,17 +1,23 @@
-# MC Protocol (RS-232) to Modbus RTU over TCP gateway
+# MC Protocol (RS-232) to Modbus RTU over TCP Gateway
 
-This solution is written to make possible to communicate with FX1,FX2,FX3 PLCs (including China clones) connected by RS-232 cable to computer via network by the following scheme:
+This solution enables communication with FX1, FX2, and FX3 PLCs (including Chinese clones) connected via RS-232 to a computer, allowing access over a network using the following scheme:
+
 ```
 Host ---(Modbus RTU over TCP)---> Computer ---(RS-232 Cable)---> PLC
 ```
 
-So, it works as simply gateway server. Gateway wait data from Modbus on TCP, then ask PLC via MC Protocol and gives results back.
-This allows to get any data (D,C,T,Y,M) from PLC memory via network.
-Now it is only Modbus function 03 is supported. 
-Should works on Windows and Linux. Prebuild binaries will be available later.
+The application functions as a simple gateway server. It listens for Modbus requests over TCP, queries the PLC using the MC Protocol, and returns the results back to the client.
 
-## How to get data
+This gateway allows reading data from various PLC memory areas (D, C, T, Y, M) over the network. Currently, only **Modbus function code 03 (Read Holding Registers)** is supported.
 
-For taking data from PLC you should know it's address in PLC memory. 
-For example D0 will have an andress 1000h. D1 - 1002h, Y0-Y15 - 00A0h.
-Please refer tables in attached file mc-protocol.pdf to find it.
+The solution is designed to work on both Windows and Linux operating systems. Pre-built binaries will be made available in the future.
+
+## Reading Data from the PLC
+
+To read data from the PLC, you need to know the Modbus address corresponding to the PLC memory location. For example:
+
+- **D0** corresponds to address `1000h`
+- **D1** corresponds to address `1002h`
+- **Y0-Y15** corresponds to address `00A0h`
+
+Please refer to the address tables in the attached `mc-protocol.pdf` file for complete address mapping information.
